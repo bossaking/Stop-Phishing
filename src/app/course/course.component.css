@@ -1,0 +1,30 @@
+.course-card{
+  padding: 1rem;
+  background-color: rgba(119, 38, 105, 0.6);
+  width: 28%;
+  border-radius: 3px;
+  margin: 1rem;
+}
+
+.course-card:hover{
+  cursor: pointer;
+  transform:translateY(-10px);
+}
+
+/*.course-card:hover > header{*/
+/*  color: #b2b2b2;*/
+/*}*/
+
+header{
+  color: white;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+}
+
+.body{
+  color: white;
+  font-family: 'Athiti', sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+}

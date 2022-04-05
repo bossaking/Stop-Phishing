@@ -1,0 +1,48 @@
+.lesson{
+  color: white;
+  padding: 1rem;
+  border: 1px solid rgba(119, 38, 105, 0.6);
+  border-radius: 3px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  height: 2rem;
+}
+
+.lesson.expand{
+  height: auto;
+}
+
+.lesson p{
+  margin-top: 0;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.3rem;
+}
+
+.header:hover{
+  cursor: pointer;
+}
+
+img{
+  transition: transform 0.2s ease-in;
+}
+
+.lesson span{
+  font-family: 'Athiti', sans-serif;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+}
+
+.header img{
+  margin-left: auto;
+  width: 1rem;
+  height: 1rem;
+  margin-top: .7rem;
+}
+
+@keyframes rotate {
+  50% {transform: rotate(180deg);}
+}

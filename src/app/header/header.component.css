@@ -1,0 +1,41 @@
+.site-name{
+  text-transform: uppercase;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 5rem;
+  text-shadow: 0 0 10px rgba(74, 74, 204, 0.5);
+  text-align: center;
+}
+
+.site-name:hover{
+  cursor: pointer;
+}
+
+.right-side-links{
+  font-size: 2rem;
+  text-align: center;
+}
+
+.right-side-links a{
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-family: 'Archivo Black', sans-serif;
+  color: white;
+  text-shadow: 0 0 10px rgba(74, 74, 204, 0.5);
+}
+
+.right-side-links a:hover{
+  color: #b2b2b2;
+}
+
+.parent{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+hr{
+  color: white;
+  width: 100%;
+}

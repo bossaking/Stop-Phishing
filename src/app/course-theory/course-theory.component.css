@@ -1,0 +1,122 @@
+.parent{
+  display: flex;
+  flex-direction: column;
+}
+
+.back-link{
+  display: flex;
+  flex-direction: row;
+}
+
+a{
+  text-decoration: none;
+}
+
+.back-link img{
+  width: 1rem;
+  height: 1rem;
+  margin: auto 1rem auto 0;
+}
+
+.back-link span{
+  color: white;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: 'Athiti', sans-serif;
+}
+
+.header{
+  color: white;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.header p{
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+
+.header span{
+  font-family: 'Athiti', sans-serif;
+  padding: .3rem 1rem .3rem 1rem;
+  background-color: rgba(119, 38, 105, 0.6);
+  text-align: center;
+  border-radius: 3px;
+  margin: auto auto auto 0;
+  text-transform: capitalize;
+}
+
+hr{
+  width: 100%;
+}
+
+.description{
+  display: flex;
+  flex-direction: column;
+}
+
+.description p{
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: .5rem;
+}
+
+.description span{
+  font-family: 'Athiti', sans-serif;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.theory{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.showX{
+  animation-name            : displaceContentX;
+  animation-duration        : 1.5s;
+  animation-iteration-count : 1;
+  animation-fill-mode       : backwards;
+}
+
+.showY{
+  animation-name            : displaceContentY;
+  animation-duration        : 1.5s;
+  animation-iteration-count : 1;
+  animation-fill-mode       : backwards;
+}
+
+.test-button{
+  width: 20%;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+  background-color: #3E48D399;
+  color: white;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: .8rem;
+  border: none;
+}
+
+.test-button:hover{
+  cursor: pointer;
+  transform: scale(1.1) rotate(1deg);
+}
+
+@keyframes displaceContentX {
+  from { transform : translateX(-150em) }
+  to   { transform : translateX(0) }
+}
+
+@keyframes displaceContentY {
+  from { transform : translateY(-100em) }
+  to   { transform : translateY(0) }
+}

@@ -1,0 +1,47 @@
+.header{
+  color: white;
+  font-size: 3rem;
+  font-family: 'Archivo Black', sans-serif;
+  animation-name            : displaceContent;
+  animation-duration        : 1.5s;
+  animation-iteration-count : 1;
+  animation-fill-mode       : forwards;
+  margin-bottom: 0;
+}
+
+p{
+  color: white;
+  font-size: 1.1rem;
+  font-family: 'Athiti', sans-serif;
+  margin-bottom: 2rem;
+  animation-name            : displaceContent;
+  animation-duration        : 1.5s;
+  animation-iteration-count : 1;
+  animation-fill-mode       : forwards;
+}
+
+button{
+  text-decoration: none;
+  padding: 1rem;
+  background-color: #3E48D399;
+  color: white;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: .8rem;
+  border: none;
+  animation-name            : displaceContent;
+  animation-duration        : 1.5s;
+  animation-iteration-count : 1;
+  animation-fill-mode       : backwards;
+}
+
+button:hover{
+  cursor: pointer;
+  transform: scale(1.1) rotate(1deg);
+}
+
+@keyframes displaceContent {
+  from { transform : translateY(-100em) }
+  to   { transform : translateY(0) }
+}
