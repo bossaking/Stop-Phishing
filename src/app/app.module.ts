@@ -25,6 +25,10 @@ import { LessonComponent } from './lesson/lesson.component';
     AppRoutingModule,
     RouterModule.forRoot([
       {
+        path: '',
+        component: AboutPhishingComponent
+      },
+      {
         path: 'about_phishing',
         component: AboutPhishingComponent
       },

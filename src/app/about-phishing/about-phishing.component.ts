@@ -12,8 +12,4 @@ export class AboutPhishingComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-  loadCourse(){
-    window.location.href = '/course';
-  }
 }

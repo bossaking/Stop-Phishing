@@ -12,8 +12,4 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  loadTheory(){
-    window.location.href = "/course/1";
-  }
 }
