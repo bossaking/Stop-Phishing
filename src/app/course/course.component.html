@@ -1,63 +1,18 @@
 <div class="cards-container" fxLayout="row wrap" >
-
-  <div class="course-card" routerLink="/course/1">
-    <header>
-      Lekcja 1
-    </header>
-    <hr>
-    <div class="body">
-      <p>Rozpoznanie przeciwnika, czyli podejrzane maile</p>
-    </div>
-  </div>
-
-  <div class="course-card">
-    <header>
-      Lekcja 1
-    </header>
-    <hr>
-    <div class="body">
-      <p>Rozpoznanie przeciwnika, czyli podejrzane maile</p>
-    </div>
-  </div>
-
-  <div class="course-card">
-    <header>
-      Lekcja 1
-    </header>
-    <hr>
-    <div class="body">
-      <p>Rozpoznanie przeciwnika, czyli podejrzane maile</p>
-    </div>
-  </div>
-
-  <div class="course-card">
-    <header>
-      Lekcja 1
-    </header>
-    <hr>
-    <div class="body">
-      <p>Rozpoznanie przeciwnika, czyli podejrzane maile</p>
-    </div>
-  </div>
-
-  <div class="course-card">
-    <header>
-      Lekcja 1
-    </header>
-    <hr>
-    <div class="body">
-      <p>Rozpoznanie przeciwnika, czyli podejrzane maile</p>
-    </div>
-  </div>
-
-  <div class="course-card">
-    <header>
-      Lekcja 1
-    </header>
-    <hr>
-    <div class="body">
-      <p>Rozpoznanie przeciwnika, czyli podejrzane maile</p>
-    </div>
+  <div *ngFor="let course of courses" class="course-card">
+    <ng-container [ngTemplateOutlet]="courseCard" [ngTemplateOutletContext]="{course:course}"></ng-container>
   </div>
 
 </div>
+
+<ng-template #courseCard let-course='course'>
+  <div  routerLink="/course/{{course.id}}">
+    <header>
+      {{course.name}}
+    </header>
+    <hr>
+    <div class="body">
+      <p>{{course.title}}</p>
+    </div>
+  </div>
+</ng-template>

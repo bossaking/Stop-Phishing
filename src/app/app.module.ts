@@ -9,7 +9,10 @@ import {RouterModule} from "@angular/router";
 import {CourseComponent} from './course/course.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {CourseTheoryComponent} from './course-theory/course-theory.component';
-import { LessonComponent } from './lesson/lesson.component';
+import {LessonComponent} from './lesson/lesson.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { LessonComponent } from './lesson/lesson.component';
         component: CourseTheoryComponent
       }
     ]),
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxSpinnerModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
