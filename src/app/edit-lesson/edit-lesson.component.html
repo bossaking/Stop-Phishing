@@ -1,0 +1,18 @@
+<div class="form-container">
+
+  <div class="action-icons">
+    <mat-icon class="edit-icon" (click)="edit()" [ngClass]="{'hidden' : readonly === false }">edit</mat-icon>
+    <mat-icon class="remove-icon" (click)="remove()">close</mat-icon>
+  </div>
+
+  <form>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Tytuł</mat-label>
+      <input matInput [formControl]="title" [readonly]="readonly">
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Opis</mat-label>
+      <textarea matInput rows="5" [formControl]="description" [readonly]="readonly"></textarea>
+    </mat-form-field>
+  </form>
+</div>

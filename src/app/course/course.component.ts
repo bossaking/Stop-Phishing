@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseService} from "../services/course.service";
 import {Course} from "../models/Course";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-course',
@@ -11,12 +12,16 @@ export class CourseComponent implements OnInit {
 
   courses: Course[] | undefined;
 
-  constructor(private courseService : CourseService) { }
+  constructor(private courseService : CourseService, private router:Router) { }
 
   ngOnInit(): void {
     this.courseService.getAllCourses().subscribe(response => {
       this.courses = response.courses;
     });
+  }
+
+  newCourse(){
+    this.router.navigate(['/new-course']);
   }
 
 }

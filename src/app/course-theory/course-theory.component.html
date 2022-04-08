@@ -6,21 +6,23 @@
   </div></a>
 
   <div class="header showY">
-    <p>{{course!.name}}</p>
+    <p>{{course?.name}}</p>
     <span>Teoria</span>
+    <div class="right-side-buttons">
+      <button class="btn btn-edit" routerLink="/edit-course/{{course?.id}}">Edytuj</button>
+      <button class="btn btn-delete" (click)="openRemoveDialog()">Usuń</button>
+    </div>
   </div>
 
   <hr>
 
   <div class="description showY">
-    <p>{{course!.title}}</p>
-    <span>{{course!.description}}</span>
+    <p>{{course?.title}}</p>
+    <span>{{course?.description}}</span>
   </div>
 
   <div class="theory showX">
-    <app-lesson></app-lesson>
-    <app-lesson></app-lesson>
-    <app-lesson></app-lesson>
+    <app-lesson *ngFor="let lesson of course?.lessons" [lesson]="lesson"></app-lesson>
   </div>
 
   <button class="test-button showY">Przejdź do testu</button>

@@ -1,0 +1,35 @@
+.form-container{
+  padding: 1rem;
+  margin: 2rem auto 0 auto;
+  border: 1px solid rgba(119, 38, 105, 0.6);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+form{
+  width: 100%;
+}
+mat-form-field{
+  width: 100%;
+  color: white;
+  font-family: 'Athiti', sans-serif;
+}
+
+
+span{
+  font-family: 'Archivo Black', sans-serif;
+  color: white;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+mat-icon{
+  margin-left: auto;
+  color: red;
+}
+
+mat-icon:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}

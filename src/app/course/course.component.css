@@ -11,10 +11,6 @@
   transform:translateY(-10px);
 }
 
-/*.course-card:hover > header{*/
-/*  color: #b2b2b2;*/
-/*}*/
-
 header{
   color: white;
   font-family: 'Archivo Black', sans-serif;
@@ -27,4 +23,10 @@ header{
   font-family: 'Athiti', sans-serif;
   font-size: 1.3rem;
   text-align: center;
+  line-height: 1.8rem;
+}
+
+.new-course-btn{
+  color: white;
+  background-color: forestgreen;
 }

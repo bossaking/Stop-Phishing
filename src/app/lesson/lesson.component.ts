@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Lesson} from "../models/lesson";
 
 @Component({
   selector: 'app-lesson',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lesson.component.css']
 })
 export class LessonComponent implements OnInit {
+
+  @Input()
+  lesson:Lesson | undefined;
 
   currentRotation = 0;
 

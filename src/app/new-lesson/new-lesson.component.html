@@ -1,0 +1,13 @@
+<div class="form-container">
+  <mat-icon (click)="remove()">close</mat-icon>
+<form>
+<mat-form-field appearance="outline" color="accent">
+  <mat-label>Tytuł</mat-label>
+  <input matInput [formControl]="title">
+</mat-form-field>
+<mat-form-field appearance="outline" color="accent">
+  <mat-label>Opis</mat-label>
+  <textarea matInput rows="5" [formControl]="description"></textarea>
+</mat-form-field>
+</form>
+</div>

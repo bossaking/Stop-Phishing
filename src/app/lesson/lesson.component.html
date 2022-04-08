@@ -1,8 +1,8 @@
-<div #lesson class="lesson" (click)="showContent(lesson, image)">
+<div #myLesson class="lesson" (click)="showContent(myLesson, image)">
   <div class="header">
-    <p>Wroga możesz dostrzec już w adresie wiadomości</p>
+    <p>{{lesson?.title}}</p>
     <img #image src="assets/images/down-arrow.svg" alt="show">
   </div>
   <hr>
-  <span>Czytaj uważnie nazwy nadawców, którzy wysyłają do Ciebie maile. Wszelkie literówki czy domeny niezgodne z powszechnie używanymi w firmie, od której wiadomości się spodziewasz, mogą być próbą ataku phishingowego. Warto być zawsze czujnym i nie otwierać maili od nadawców takich jak np. ten: obsługa@aiorbank.pl . Czujność powinno także wzbudzać pole adresata, gdy jest puste lub gdy zawiera frazę: „Undisclosed Recipients”.</span>
+  <span>{{lesson?.description}}</span>
 </div>

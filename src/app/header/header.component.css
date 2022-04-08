@@ -4,6 +4,7 @@
   font-size: 5rem;
   text-shadow: 0 0 10px rgba(74, 74, 204, 0.5);
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .site-name:hover{

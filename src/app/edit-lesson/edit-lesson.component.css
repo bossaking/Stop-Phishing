@@ -1,0 +1,54 @@
+.form-container{
+  padding: 1rem;
+  margin: 2rem auto 0 auto;
+  border: 1px solid rgba(119, 38, 105, 0.6);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+form{
+  width: 100%;
+}
+mat-form-field{
+  width: 100%;
+  color: white;
+  font-family: 'Athiti', sans-serif;
+}
+
+
+span{
+  font-family: 'Archivo Black', sans-serif;
+  color: white;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+mat-icon:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.action-icons{
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-bottom: .5rem;
+}
+
+.edit-icon{
+  color: #6064d7;
+  border: 1px solid #6064d7;
+  border-radius: 3px;
+  margin-right: 1rem;
+}
+
+.remove-icon{
+  color: red;
+  border: 1px solid red;
+  border-radius: 3px;
+}
+
+.hidden{
+  display: none;
+}

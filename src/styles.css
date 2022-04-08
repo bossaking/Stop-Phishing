@@ -3,3 +3,22 @@ body, html{
   margin: 0 10rem 0 10rem;
   background: #2c2c2c;
 }
+
+hr{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn{
+  border-radius: 3px;
+  font-family: 'Athiti', sans-serif;
+  text-transform: uppercase;
+  padding: .5rem;
+  border: none;
+  color: white;
+}
+
+.btn:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+}
