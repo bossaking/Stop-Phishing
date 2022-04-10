@@ -8,7 +8,7 @@
   <div class="header showY">
     <p>{{course?.name}}</p>
     <span>Teoria</span>
-    <div class="right-side-buttons">
+    <div class="right-side-buttons" *ngIf="authService.loggedIn()">
       <button class="btn btn-edit" routerLink="/edit-course/{{course?.id}}">Edytuj</button>
       <button class="btn btn-delete" (click)="openRemoveDialog()">Usuń</button>
     </div>

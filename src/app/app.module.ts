@@ -24,6 +24,14 @@ import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
 import { EditLessonComponent } from './edit-lesson/edit-lesson.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { NewTestComponent } from './new-test/new-test.component';
+import {MaterialFileInputModule} from "ngx-material-file-input";
+import {MatSelectModule} from "@angular/material/select";
+import { NewQuestionComponent } from './new-question/new-question.component';
+import { NewAnswerComponent } from './new-answer/new-answer.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -37,7 +45,12 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     NewCourseComponent,
     NewLessonComponent,
     EditLessonComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    LoginComponent,
+    LogoutComponent,
+    NewTestComponent,
+    NewQuestionComponent,
+    NewAnswerComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +79,18 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
       {
         path: 'edit-course/:id',
         component: EditCourseComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'logout',
+        component: LogoutComponent
+      },
+      {
+        path: 'course/test/create',
+        component: NewTestComponent
       }
     ]),
     FlexLayoutModule,
@@ -77,7 +102,10 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     MatInputModule,
     MatDialogModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialFileInputModule,
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

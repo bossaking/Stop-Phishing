@@ -1,7 +1,8 @@
 .form-container{
-  padding: 1rem;
-  margin: 2rem auto 0 auto;
-  border: 1px solid rgba(119, 38, 105, 0.6);
+  padding: 2rem;
+  width: 50%;
+  margin: 2rem auto 2rem auto;
+  background-color: #333648;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -9,13 +10,13 @@
 
 form{
   width: 100%;
+  margin-bottom: 1rem;
 }
 mat-form-field{
   width: 100%;
   color: white;
   font-family: 'Athiti', sans-serif;
 }
-
 
 span{
   font-family: 'Archivo Black', sans-serif;
@@ -24,15 +25,24 @@ span{
   text-transform: uppercase;
 }
 
-mat-icon{
-  margin-left: auto;
-  color: red;
-  border: 1px solid red;
-  border-radius: 3px;
-  margin-bottom: .5rem;
+.btn{
+  margin: auto;
+  background-color: forestgreen;
 }
 
-mat-icon:hover{
-  cursor: pointer;
-  transform: scale(1.1);
+hr{
+  width: 100%;
+}
+
+
+.actions-buttons button{
+  margin-right: 1rem;
+}
+
+.save{
+  background-color: #2527bb;
+}
+
+.cancel{
+  background-color: inherit;
 }

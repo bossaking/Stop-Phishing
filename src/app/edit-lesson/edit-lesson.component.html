@@ -8,7 +8,7 @@
   <form>
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Tytuł</mat-label>
-      <input matInput [formControl]="title" [readonly]="readonly">
+      <input matInput [formControl]="title" [readonly]="readonly" #titleInput>
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Opis</mat-label>

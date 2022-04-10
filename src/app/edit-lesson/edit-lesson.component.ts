@@ -1,5 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {Lesson} from "../models/lesson";
+import {LessonsStatuses} from "../models/lessonsStatuses";
 
 @Component({
   selector: 'app-edit-lesson',
@@ -8,24 +10,38 @@ import {FormControl} from "@angular/forms";
 })
 export class EditLessonComponent implements OnInit {
 
-  @Output() removeEvent = new EventEmitter<boolean>();
+  @Input()
+  lesson : Lesson | undefined;
+
+  @Output()
+  removeEvent = new EventEmitter();
+
+  @ViewChild('titleInput') titleInput : ElementRef | undefined;
 
   readonly : boolean  = true;
 
   title = new FormControl('');
   description = new FormControl('');
 
-  constructor() { }
+  status : LessonsStatuses;
+
+  constructor() {
+    this.status = LessonsStatuses.notChanged;
+  }
 
   ngOnInit(): void {
-    this.title.setValue("LOL");
+    this.title.setValue(this.lesson?.title);
+    this.description.setValue(this.lesson?.description);
   }
 
   remove(){
-    this.removeEvent.emit(true);
+    this.status = LessonsStatuses.deleted;
+    this.removeEvent.emit();
   }
 
   edit(){
     this.readonly = false;
+    this.titleInput?.nativeElement.focus();
+    this.status = LessonsStatuses.edited;
   }
 }

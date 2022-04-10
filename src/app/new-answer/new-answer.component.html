@@ -1,0 +1,16 @@
+<div class="form-container">
+  <mat-icon (click)="remove()">close</mat-icon>
+  <form>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Treść</mat-label>
+      <input matInput [formControl]="title">
+    </mat-form-field>
+
+    <mat-slide-toggle
+      class="example-margin" color="primary" [checked]="isRight" (toggleChange)="toggleChanged()">
+      Poprawna odpowiedź
+    </mat-slide-toggle>
+
+  </form>
+</div>

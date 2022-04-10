@@ -29,4 +29,11 @@ header{
 .new-course-btn{
   color: white;
   background-color: forestgreen;
+  margin-left: 1rem;
+}
+
+.new-test-btn{
+  color: white;
+  background-color: forestgreen;
+  margin-left: 1rem;
 }

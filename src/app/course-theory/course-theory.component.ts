@@ -4,6 +4,7 @@ import {Course} from "../models/Course";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-course-theory',
@@ -14,7 +15,7 @@ export class CourseTheoryComponent implements OnInit {
 
   course: Course | undefined;
 
-  constructor(private courseService: CourseService, private route: ActivatedRoute, public dialog: MatDialog, private router: Router) {
+  constructor(private courseService: CourseService, private route: ActivatedRoute, public dialog: MatDialog, private router: Router, public authService : AuthService) {
   }
 
   ngOnInit(): void {

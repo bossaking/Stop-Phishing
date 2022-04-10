@@ -9,6 +9,7 @@
 
 form{
   width: 100%;
+  margin-bottom: 1rem;
 }
 mat-form-field{
   width: 100%;
@@ -35,4 +36,18 @@ mat-icon{
 mat-icon:hover{
   cursor: pointer;
   transform: scale(1.1);
+}
+
+hr{
+  width: 100%;
+}
+
+.btn{
+  margin: auto;
+  background-color: forestgreen;
+}
+
+.question-header{
+  display: flex;
+  flex-direction: row;
 }

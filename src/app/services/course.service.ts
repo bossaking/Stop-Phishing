@@ -9,6 +9,7 @@ import {GetAllCoursesResponse} from "../models/GetAllCoursesResponse";
 import {GetSingleCourseResponse} from "../models/getSingleCourseResponse";
 import {Course} from "../models/Course";
 import {SimpleCourse} from "../models/simpleCourse";
+import {UpdateCourseRequest} from "../models/updateCourseRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,24 @@ export class CourseService extends ToastrNotificationsService{
   createCourse(data:SimpleCourse) : Observable<any>{
     this.spinnerService.show();
     return this.http.post(Globals.apiURL + 'course/create', data)
+      .pipe(
+        map(
+          () => {
+            this.spinnerService.hide();
+            return true;
+          }
+        ),
+        catchError((err) => {
+          this.showError(err);
+          throwError(err);
+          return of(false);
+        })
+      );
+  }
+
+  updateCourse(data:UpdateCourseRequest, id : string | undefined) : Observable<any>{
+    this.spinnerService.show();
+    return this.http.put(Globals.apiURL + 'course/update/' + id, data)
       .pipe(
         map(
           () => {

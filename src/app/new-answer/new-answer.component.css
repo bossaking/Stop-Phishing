@@ -36,3 +36,12 @@ mat-icon:hover{
   cursor: pointer;
   transform: scale(1.1);
 }
+
+hr{
+  width: 100%;
+}
+
+mat-slide-toggle{
+  color: white;
+  font-family: 'Athiti', sans-serif;
+}

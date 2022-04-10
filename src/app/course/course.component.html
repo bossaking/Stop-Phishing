@@ -1,4 +1,7 @@
-<button class="btn new-course-btn" (click)="newCourse()">New course</button>
+<button class="btn new-course-btn" (click)="newCourse()" *ngIf="authService.loggedIn()">Nowa lekcja</button>
+
+<button class="btn new-test-btn" routerLink="/course/test/create" *ngIf="authService.loggedIn()">Nowy test</button>
+
 
 <div class="cards-container" fxLayout="row wrap" >
   <div *ngFor="let course of courses" class="course-card">

@@ -1,0 +1,40 @@
+<div class="form-container">
+  <div class="question-header">
+    <span class="question-number">Pytanie # {{number}}</span>
+    <mat-icon (click)="remove()">close</mat-icon>
+  </div>
+
+  <form>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Obrazek (opcjonalnie)</mat-label>
+      <ngx-mat-file-input #file [accept]="accept" [formControl]="mainImage" (change)="mainImageFileUpload($event)">
+      </ngx-mat-file-input>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Treść</mat-label>
+      <textarea matInput rows="5" [formControl]="title"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Komunikat dla poprawnej odpowiedzi</mat-label>
+      <textarea matInput rows="5" [formControl]="rightAnswerCommunicate"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Komunikat dla błędnej odpowiedzi</mat-label>
+      <textarea matInput rows="5" [formControl]="badAnswerCommunicate"></textarea>
+    </mat-form-field>
+
+    <span>Odpowiedzi ({{answers.length}})</span>
+    <hr>
+
+    <ng-container #answersContainer></ng-container>
+
+  </form>
+
+  <button class="btn" type="button" (click)="addNewAnswer()">+ Dodaj odpowiedź</button>
+</div>
+
+<hr>

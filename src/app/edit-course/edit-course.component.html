@@ -14,11 +14,11 @@
       <mat-label>Opis</mat-label>
       <textarea matInput rows="5" [formControl]="description"></textarea>
     </mat-form-field>
-    <span>Elementy lekcji ({{lessons.length}})</span>
+    <span>Elementy lekcji ({{lessonsComponents.length}})</span>
     <hr>
 
     <ng-container #lessonsContainer></ng-container>
-    <app-edit-lesson></app-edit-lesson>
+<!--    <app-edit-lesson></app-edit-lesson>-->
   </form>
 
   <button class="btn" (click)="addNewLesson()">+ Dodaj element</button>
@@ -26,7 +26,7 @@
   <hr>
   <div class="actions-buttons">
     <button class="btn save" (click)="save()">Zapisz</button>
-    <button class="btn cancel" routerLink="/course">Anuluj</button>
+    <button class="btn cancel" routerLink="/course/{{course?.id}}">Anuluj</button>
   </div>
 </div>
 
