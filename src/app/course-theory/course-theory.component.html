@@ -25,6 +25,6 @@
     <app-lesson *ngFor="let lesson of course?.lessons" [lesson]="lesson"></app-lesson>
   </div>
 
-  <button class="test-button showY">Przejdź do testu</button>
+  <button class="test-button showY" routerLink="test" *ngIf="course?.testId != emptyGuid">Przejdź do testu</button>
 
 </div>

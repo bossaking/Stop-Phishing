@@ -6,5 +6,6 @@ export interface Course{
   title:string;
   description:string;
   isComplete:boolean;
+  testId:string|null;
   lessons:Lesson[];
 }

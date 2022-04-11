@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="admin-buttons" *ngIf="authService.loggedIn()">
+    <button class="btn btn-edit" routerLink="/course/edit-test/{{test?.id}}">Edytuj</button>
+    <button class="btn btn-delete" (click)="openRemoveDialog()">Usuń</button>
+  </div>
+
+  <span class="question-number">Pytanie {{questionNumber}} / {{test?.questions?.length}}</span>
+  <hr>
+
+
+  <ng-container #questionContainer></ng-container>
+
+  <div class="questions-buttons">
+    <button class="btn" (click)="undo()">Wstecz</button>
+    <button class="btn" [ngClass]="{'disabled-button' : question?.answered === false}" (click)="redo()">Dalej</button>
+  </div>
+
+</div>

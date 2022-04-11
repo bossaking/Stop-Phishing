@@ -1,0 +1,54 @@
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.question-number{
+  margin: 2rem auto 0 auto;
+  color: white;
+  font-family: 'Athiti', sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+hr{
+  width: 70%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.questions-buttons{
+  margin: auto;
+}
+
+.btn{
+  margin-left: 2rem;
+  margin-right: 2rem;
+  background-color: #6064d7;
+  width: 10rem;
+}
+
+.disabled-button{
+  background-color: #333648;
+}
+
+.disabled-button:hover{
+  transform: scale(1);
+}
+
+.btn-delete{
+
+  background-color: red;
+
+}
+
+.btn-edit{
+  background-color: #2527bb;
+}
+
+.admin-buttons{
+  margin: 1rem auto 1rem auto;
+}

@@ -12,6 +12,7 @@ import {Course} from "../models/Course";
 import {Router} from "@angular/router";
 import {NewQuestionComponent} from "../new-question/new-question.component";
 import {TestService} from "../services/test.service";
+import {Globals} from "../shared/globals";
 
 @Component({
   selector: 'app-new-test',
@@ -36,7 +37,8 @@ export class NewTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.courseService.getAllCourses().subscribe(result => {
-      this.courses = result.courses;
+      console.log(result.courses);
+      this.courses = result.courses.filter((c) => c.testId === Globals.emptyGuid);
     })
   }
 

@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {AuthService} from "../services/auth.service";
+import {Globals} from "../shared/globals";
 
 @Component({
   selector: 'app-course-theory',
@@ -14,6 +15,8 @@ import {AuthService} from "../services/auth.service";
 export class CourseTheoryComponent implements OnInit {
 
   course: Course | undefined;
+
+  emptyGuid = Globals.emptyGuid;
 
   constructor(private courseService: CourseService, private route: ActivatedRoute, public dialog: MatDialog, private router: Router, public authService : AuthService) {
   }

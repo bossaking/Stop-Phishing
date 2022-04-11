@@ -71,6 +71,7 @@ export class NewCourseComponent implements AfterViewInit {
       name : this.name.value,
       title : this.title.value,
       description : this.description.value,
+      testId:null,
       lessons : lessons
     };
     this.courseService.createCourse(simpleCourse).subscribe((result) => {

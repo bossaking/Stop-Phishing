@@ -1,15 +1,8 @@
 <div class="form-container">
   <form>
 
-    <span>Nowy test</span>
+    <span>Edycja testu</span>
     <hr>
-
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>Wybierz lekcję</mat-label>
-      <mat-select [formControl]="courseId">
-        <mat-option value="{{course.id}}" *ngFor="let course of courses" >{{course.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
 
     <span>Pytania ({{questions.length}})</span>
     <hr>

@@ -32,6 +32,11 @@ import {MatSelectModule} from "@angular/material/select";
 import { NewQuestionComponent } from './new-question/new-question.component';
 import { NewAnswerComponent } from './new-answer/new-answer.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { TestComponent } from './test/test.component';
+import { QuestionComponent } from './question/question.component';
+import { EditTestComponent } from './edit-test/edit-test.component';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
+import { EditAnswerComponent } from './edit-answer/edit-answer.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,12 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     LogoutComponent,
     NewTestComponent,
     NewQuestionComponent,
-    NewAnswerComponent
+    NewAnswerComponent,
+    TestComponent,
+    QuestionComponent,
+    EditTestComponent,
+    EditQuestionComponent,
+    EditAnswerComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +101,14 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
       {
         path: 'course/test/create',
         component: NewTestComponent
+      },
+      {
+        path: 'course/:id/test',
+        component: TestComponent
+      },
+      {
+        path: 'course/edit-test/:id',
+        component: EditTestComponent
       }
     ]),
     FlexLayoutModule,

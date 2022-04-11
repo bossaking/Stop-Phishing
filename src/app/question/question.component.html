@@ -1,0 +1,28 @@
+<div class="container">
+
+  <img *ngIf="noImage === false" alt="question-image" src="{{question?.image}}">
+
+  <span class="title">{{question?.title}}</span>
+
+  <hr>
+
+  <div class="communicate" *ngIf="answered">
+
+    <div *ngIf="answeredRight">
+      <p class="right">Dobrze!</p>
+      {{question?.rightAnswerCommunicate}}
+    </div>
+
+    <div *ngIf="answeredRight === false">
+      <p class="bad">Błąd.</p>
+      {{question?.badAnswerCommunicate}}
+    </div>
+
+  </div>
+
+  <div class="answer" *ngFor="let answer of question?.answers; let i = index" [ngClass]="{'right-answer': selectedAnswer === i && answer.isRight,
+  'bad-answer': selectedAnswer === i && !answer.isRight}" (click)="selectAnswer(i, answer.isRight)">
+    {{answer.title}}
+  </div>
+
+</div>
