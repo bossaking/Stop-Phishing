@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Lesson} from "../models/lesson";
-import {LessonsStatuses} from "../models/lessonsStatuses";
+import {Statuses} from "../models/statuses";
 
 @Component({
   selector: 'app-edit-lesson',
@@ -23,10 +23,10 @@ export class EditLessonComponent implements OnInit {
   title = new FormControl('');
   description = new FormControl('');
 
-  status : LessonsStatuses;
+  status : Statuses;
 
   constructor() {
-    this.status = LessonsStatuses.notChanged;
+    this.status = Statuses.notChanged;
   }
 
   ngOnInit(): void {
@@ -35,13 +35,13 @@ export class EditLessonComponent implements OnInit {
   }
 
   remove(){
-    this.status = LessonsStatuses.deleted;
+    this.status = Statuses.deleted;
     this.removeEvent.emit();
   }
 
   edit(){
     this.readonly = false;
     this.titleInput?.nativeElement.focus();
-    this.status = LessonsStatuses.edited;
+    this.status = Statuses.edited;
   }
 }

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {LessonsStatuses} from "../models/lessonsStatuses";
+import {Statuses} from "../models/statuses";
 
 @Component({
   selector: 'app-new-lesson',
@@ -14,10 +14,10 @@ export class NewLessonComponent implements OnInit {
   title = new FormControl('');
   description = new FormControl('');
 
-  status : LessonsStatuses;
+  status : Statuses;
 
   constructor() {
-    this.status = LessonsStatuses.added;
+    this.status = Statuses.added;
   }
 
   ngOnInit(): void {

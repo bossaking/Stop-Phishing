@@ -13,7 +13,7 @@ import {NewLessonComponent} from "../new-lesson/new-lesson.component";
 import {Course} from "../models/Course";
 import {Lesson} from "../models/lesson";
 import {EditLessonComponent} from "../edit-lesson/edit-lesson.component";
-import {LessonsStatuses} from "../models/lessonsStatuses";
+import {Statuses} from "../models/statuses";
 import {SimpleLesson} from "../models/simpleLesson";
 import {UpdateCourseRequest} from "../models/updateCourseRequest";
 
@@ -87,7 +87,7 @@ export class EditCourseComponent implements OnInit {
 
 
   onLessonRemoved(componentRef: any) {
-    this.lessonsComponents[this.lessonsComponents.indexOf(componentRef)].instance.status = LessonsStatuses.deleted;
+    this.lessonsComponents[this.lessonsComponents.indexOf(componentRef)].instance.status = Statuses.deleted;
     if(componentRef.instance.lesson != undefined)
     this.deletedLessonsIds.push(componentRef.instance.lesson?.id);
     this.lessonsComponents.splice(this.lessonsComponents.indexOf(componentRef), 1);
@@ -97,13 +97,13 @@ export class EditCourseComponent implements OnInit {
   save() {
     for(let component of this.lessonsComponents){
       switch (component.instance.status){
-        case LessonsStatuses.added:
+        case Statuses.added:
           this.createdLessons.push({
             title : component.instance.title.value,
             description : component.instance.description.value
           });
           break;
-        case LessonsStatuses.edited:
+        case Statuses.edited:
           this.editedLessons.push({
             id : component.instance.lesson.id,
             title : component.instance.title.value,

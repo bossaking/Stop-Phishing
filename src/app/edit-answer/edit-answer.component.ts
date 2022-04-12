@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {SimpleAnswer} from "../models/simpleAnswer";
+import {Statuses} from "../models/statuses";
 
 @Component({
   selector: 'app-edit-answer',
@@ -7,9 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditAnswerComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  answer : SimpleAnswer | undefined;
 
-  ngOnInit(): void {
+  @Output()
+  removeExistedEvent = new EventEmitter();
+  toggleChangedEvent = new EventEmitter();
+
+  title = new FormControl('');
+
+  isRight : boolean | undefined;
+
+  readonly : boolean = true;
+
+  status : Statuses = Statuses.notChanged;
+
+  constructor() {
   }
 
+  ngOnInit(): void {
+    this.title.setValue(this.answer?.title);
+    this.isRight = this.answer?.isRight;
+  }
+
+  remove(){
+    this.removeExistedEvent.emit();
+  }
+
+  toggleChanged(){
+    this.isRight = !this.isRight;
+    if(this.isRight)
+      this.toggleChangedEvent.emit();
+  }
+
+  edit(){
+    this.readonly = false;
+    this.status = Statuses.edited;
+  }
 }

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {Course} from "../models/Course";
-import {CourseService} from "../services/course.service";
+import {Statuses} from "../models/statuses";
 
 @Component({
   selector: 'app-new-answer',
@@ -17,6 +16,8 @@ export class NewAnswerComponent implements OnInit {
   title = new FormControl('');
 
   isRight : boolean = false;
+
+  status : Statuses = Statuses.added;
 
   constructor() {
   }

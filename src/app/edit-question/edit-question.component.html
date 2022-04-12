@@ -1,1 +1,46 @@
-<p>edit-question works!</p>
+<div class="form-container">
+  <div class="question-header">
+    <span class="question-number">Pytanie # {{number}}</span>
+    <div class="right-side-buttons">
+      <mat-icon class="edit-icon" (click)="edit()" [ngClass]="{'hidden' : readonly === false }">edit</mat-icon>
+      <mat-icon (click)="remove()">close</mat-icon>
+    </div>
+  </div>
+
+  <img *ngIf="noImage === false" alt="question-image" src="{{question?.image}}">
+
+  <form>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Obrazek (opcjonalnie)</mat-label>
+      <ngx-mat-file-input #file [accept]="accept" [formControl]="mainImage" (change)="mainImageFileUpload($event)"
+                          [disabled]="readonly">
+      </ngx-mat-file-input>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Treść</mat-label>
+      <textarea matInput rows="5" [formControl]="title" [readonly]="readonly"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Komunikat dla poprawnej odpowiedzi</mat-label>
+      <textarea matInput rows="5" [formControl]="rightAnswerCommunicate" [readonly]="readonly"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Komunikat dla błędnej odpowiedzi</mat-label>
+      <textarea matInput rows="5" [formControl]="badAnswerCommunicate" [readonly]="readonly"></textarea>
+    </mat-form-field>
+
+    <span>Odpowiedzi ({{answers.length}})</span>
+    <hr>
+
+    <ng-container #answersContainer></ng-container>
+
+  </form>
+
+  <button class="btn" type="button" (click)="addNewAnswer()">+ Dodaj odpowiedź</button>
+</div>
+
+<hr>

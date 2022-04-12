@@ -1,4 +1,4 @@
-export enum LessonsStatuses{
+export enum Statuses{
   notChanged,
   added,
   edited,

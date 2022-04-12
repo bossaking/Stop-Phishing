@@ -8,9 +8,9 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {Course} from "../models/Course";
 import {CourseService} from "../services/course.service";
 import {NewAnswerComponent} from "../new-answer/new-answer.component";
+import {Statuses} from "../models/statuses";
 
 @Component({
   selector: 'app-new-question',
@@ -35,6 +35,8 @@ export class NewQuestionComponent implements OnInit {
   number : number | undefined;
 
   image : File | undefined;
+
+  status : Statuses = Statuses.added;
 
   constructor(private courseService : CourseService, private factory: ComponentFactoryResolver) {
     this.answers = [];
