@@ -23,123 +23,151 @@ export class EditTestComponent implements OnInit {
 
   @ViewChild('questionsContainer', {read: ViewContainerRef}) vc: ViewContainerRef | undefined;
 
-  constructor(private testService : TestService, private route : ActivatedRoute, private cDRef: ChangeDetectorRef, private factory: ComponentFactoryResolver, private router: Router) { }
+  constructor(private testService: TestService, private route: ActivatedRoute, private cDRef: ChangeDetectorRef, private factory: ComponentFactoryResolver, private router: Router) {
+  }
 
-  test : SingleTestResponse | undefined;
+  test: SingleTestResponse | undefined;
 
-  questions : any[] = [];
+  existedQuestions: any[] = [];
+  addedQuestions: any[] = [];
 
-  deletedQuestionsIds : string[] = [];
+  deletedQuestionsIds: string[] = [];
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     this.testService.getById(id).subscribe(result => {
       this.test = result;
-      for(let question of this.test.questions){
+      for (let question of this.test.questions) {
         this.addExistingQuestions(question);
       }
     })
   }
 
-  addExistingQuestions(question : SimpleQuestion){
+  addExistingQuestions(question: SimpleQuestion) {
     const factory = this.factory.resolveComponentFactory(EditQuestionComponent);
     const componentRef = this.vc?.createComponent(factory);
-    this.questions.push(componentRef);
+    this.existedQuestions.push(componentRef);
     // @ts-ignore
     componentRef?.instance.question = question;
     // @ts-ignore
-    componentRef?.instance.number = this.questions.indexOf(componentRef) + 1;
+    componentRef?.instance.number = this.existedQuestions.concat(this.addedQuestions).indexOf(componentRef) + 1;
     componentRef?.instance.onExistedQuestionDeleted.subscribe(() => {
       this.onExistedQuestionDeleted(componentRef)
     });
   }
 
-  addNewQuestion(){
+  addNewQuestion() {
     const factory = this.factory.resolveComponentFactory(NewQuestionComponent);
     const componentRef = this.vc?.createComponent(factory);
-    this.questions.push(componentRef);
+    this.addedQuestions.push(componentRef);
     // @ts-ignore
-    componentRef?.instance.number = this.questions.indexOf(componentRef) + 1;
+    componentRef?.instance.number = this.existedQuestions.concat(this.addedQuestions).indexOf(componentRef) + 1;
     componentRef?.instance.removeEvent.subscribe(() => {
       this.onQuestionRemoved(componentRef)
     });
   }
 
-  onQuestionRemoved(componentRef : any){
-    this.questions.splice(this.questions.indexOf(componentRef), 1);
+  onQuestionRemoved(componentRef: any) {
+    this.addedQuestions.splice(this.addedQuestions.indexOf(componentRef), 1);
     componentRef.destroy();
-    for(let ref of this.questions){
+    for (let ref of this.addedQuestions.concat(this.existedQuestions)) {
       // @ts-ignore
-      ref?.instance.number = this.questions.indexOf(ref) + 1;
+      ref?.instance.number = this.existedQuestions.concat(this.addedQuestions).indexOf(ref) + 1;
     }
   }
 
-  onExistedQuestionDeleted(componentRef : any){
-    this.questions.splice(this.questions.indexOf(componentRef), 1);
+  onExistedQuestionDeleted(componentRef: any) {
+    this.existedQuestions.splice(this.existedQuestions.indexOf(componentRef), 1);
     this.deletedQuestionsIds.push(componentRef.instance.question.id);
     componentRef.destroy();
-    for(let ref of this.questions){
+    for (let ref of this.existedQuestions.concat(this.addedQuestions)) {
       // @ts-ignore
-      ref?.instance.number = this.questions.indexOf(ref) + 1;
+      ref?.instance.number = this.existedQuestions.concat(this.addedQuestions).indexOf(ref) + 1;
     }
   }
 
-  save(){
+  save() {
     let formData: FormData = new FormData();
 
     let testId: string = this.test!.id;
 
     //Dodajemy do formy wszystkie id pytań które trzeba usunąć
-    for(let i = 0; i < this.deletedQuestionsIds.length; i++){
+    for (let i = 0; i < this.deletedQuestionsIds.length; i++) {
       formData.append(`deletedQuestions[${i}]`, this.deletedQuestionsIds[i]);
     }
 
-    for (let i = 0; i < this.questions.length; i++) {
+    for (let i = 0; i < this.addedQuestions.length; i++) {
+      let question = this.addedQuestions[i].instance;
 
-      let question = this.questions[i].instance;
-
-      //Dodajemy do formy wszystkie id odpowiedzi które trzeba usunąć
-      for(let j = 0; j < question.deletedAnswersIds.length; j++){
-        formData.append(`deletedAnswers[${i}]`, question.deletedAnswersIds[i]);
+      if (question.mainImage.value === "") {
+        formData.append(`newQuestions[${i}].title`, question.title.value);
+        formData.append(`newQuestions[${i}].imageName`, '');
+        formData.append(`newQuestions[${i}].rightAnswerCommunicate`, question.rightAnswerCommunicate.value);
+        formData.append(`newQuestions[${i}].badAnswerCommunicate`, question.badAnswerCommunicate.value);
+      } else {
+        formData.append(`newQuestions[${i}].title`, question.title.value);
+        formData.append(`newQuestions[${i}].imageName`, question.image.name);
+        formData.append(`newQuestions[${i}].rightAnswerCommunicate`, question.rightAnswerCommunicate.value);
+        formData.append(`newQuestions[${i}].badAnswerCommunicate`, question.badAnswerCommunicate.value);
+        formData.append(`images`, question.image);
       }
 
+      for (let j = 0; j < question.answers.length; j++) {
+        let answer = question.answers[j].instance;
+        formData.append(`newQuestions[${i}].answers[${j}].title`, answer.title.value);
+        formData.append(`newQuestions[${i}].answers[${j}].isRight`, answer.isRight);
+      }
+    }
 
+    let questionIndex = 0;
+    for (let i = 0; i < this.existedQuestions.length; i++) {
 
-      if(question.status === Statuses.added){
+      let question = this.existedQuestions[i].instance;
+
+      if (question.status === Statuses.edited) {
+
+        //Dodajemy do formy wszystkie id odpowiedzi które trzeba usunąć
+        for (let j = 0; j < question.deletedAnswersIds?.length; j++) {
+          formData.append(`editedQuestions[${questionIndex}].deletedAnswers[${j}]`, question.deletedAnswersIds[j]);
+        }
+
+        let answerIndex = 0;
+        for (let j = 0; j < question.existedAnswers.length; j++) {
+          let answer = question.existedAnswers[j].instance;
+          if (answer.status === Statuses.edited) {
+            formData.append(`editedQuestions[${questionIndex}].editedAnswers[${answerIndex}].id`, answer.answer.id);
+            formData.append(`editedQuestions[${questionIndex}].editedAnswers[${answerIndex}].title`, answer.title.value);
+            formData.append(`editedQuestions[${questionIndex}].editedAnswers[${answerIndex}].isRight`, answer.isRight);
+            answerIndex++;
+          }
+        }
+
+        for (let j = 0; j < question.addedAnswers.length; j++) {
+          let answer = question.addedAnswers[j].instance;
+          formData.append(`editedQuestions[${questionIndex}].addedAnswers[${j}].title`, answer.title.value);
+          formData.append(`editedQuestions[${questionIndex}].addedAnswers[${j}].isRight`, answer.isRight);
+        }
+
+        formData.append(`editedQuestions[${questionIndex}].id`, question.question.id);
+        formData.append(`editedQuestions[${questionIndex}].title`, question.title.value);
+        formData.append(`editedQuestions[${questionIndex}].rightAnswerCommunicate`, question.rightAnswerCommunicate.value);
+        formData.append(`editedQuestions[${questionIndex}].badAnswerCommunicate`, question.badAnswerCommunicate.value);
+
         if (question.mainImage.value === "") {
-          formData.append(`newQuestions[${i}].title`, question.title.value);
-          formData.append(`newQuestions[${i}].imageNumber`, '');
-          formData.append(`newQuestions[${i}].rightAnswerCommunicate`, question.rightAnswerCommunicate.value);
-          formData.append(`newQuestions[${i}].badAnswerCommunicate`, question.badAnswerCommunicate.value);
-        } else {
-          formData.append(`newQuestions[${i}].title`, question.title.value);
-          formData.append(`newQuestions[${i}].imageNumber`, i.toString());
-          formData.append(`newQuestions[${i}].rightAnswerCommunicate`, question.rightAnswerCommunicate.value);
-          formData.append(`newQuestions[${i}].badAnswerCommunicate`, question.badAnswerCommunicate.value);
-          formData.append(`image`, question.image);
+          formData.append(`editedQuestions[${questionIndex}].imageName`, '');
+        }else{
+          formData.append(`editedQuestions[${questionIndex}].imageName`, question.image.name);
+          formData.append(`images`, question.image);
         }
-      }else if(question.status === Statuses.edited){
-        for(let j = 0; j < question.answers.length; j++){
-          let answer = question.answers[i].instance;
-          if(answer.status === Statuses.added){
-            formData.append(`addedAnswers[${i}].questionId`, question.question.id);
-            formData.append(`addedAnswers[${i}].title`, answer.title.value);
-            formData.append(`addedAnswers[${i}].title`, answer.isRight);
-          }
-          else if(answer.status === Statuses.edited){
-            formData.append(`editedAnswers[${i}].answerId`, answer.answer.id);
-            formData.append(`editedAnswers[${i}].title`, answer.title.value);
-            formData.append(`editedAnswers[${i}].title`, answer.isRight);
-          }
-        }
+        questionIndex++;
       }
 
     }
 
-    // this.testService.updateTest(formData, testId).subscribe(result => {
-    //   if(result){
-    //     this.router.navigate(['/course']);
-    //   }
-    // });
+    this.testService.updateTest(formData, testId).subscribe(result => {
+      if (result) {
+        this.router.navigate(['/course']);
+      }
+    });
   }
 }

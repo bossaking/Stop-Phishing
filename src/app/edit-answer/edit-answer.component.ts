@@ -16,6 +16,7 @@ export class EditAnswerComponent implements OnInit {
   @Output()
   removeExistedEvent = new EventEmitter();
   toggleChangedEvent = new EventEmitter();
+  startEditEvent = new EventEmitter();
 
   title = new FormControl('');
 
@@ -46,5 +47,6 @@ export class EditAnswerComponent implements OnInit {
   edit(){
     this.readonly = false;
     this.status = Statuses.edited;
+    this.startEditEvent.emit();
   }
 }

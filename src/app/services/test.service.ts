@@ -6,20 +6,21 @@ import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Globals} from "../shared/globals";
 import {SingleTestResponse} from "../models/singleTestResponse";
+import {AppConfigService} from "./app-config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService extends ToastrNotificationsService{
 
-  constructor(private http: HttpClient, protected spinnerService:NgxSpinnerService) {
+  constructor(private http: HttpClient, protected spinnerService:NgxSpinnerService, private appConfigService: AppConfigService) {
     super(spinnerService);
   }
 
   createTest(formData: FormData, id : string): Observable<any>{
     this.spinnerService.show();
     let headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
-    return this.http.post(Globals.apiURL + 'course/test/create/' + id, formData, {'headers':headers})
+    return this.http.post(this.appConfigService.getConfig().apiURL + 'course/test/create/' + id, formData, {'headers':headers})
       .pipe(map((result: any) => {
           this.spinnerService.hide();
           return true;
@@ -35,7 +36,7 @@ export class TestService extends ToastrNotificationsService{
 
   getByCourseId(courseId:any) : Observable<SingleTestResponse>{
     this.spinnerService.show();
-    return this.http.get(Globals.apiURL + 'course/test/' + courseId)
+    return this.http.get(this.appConfigService.getConfig().apiURL + 'course/test/' + courseId)
       .pipe(map((result: any) => {
           this.spinnerService.hide();
           return result;
@@ -50,7 +51,7 @@ export class TestService extends ToastrNotificationsService{
 
   getById(testId:any) : Observable<SingleTestResponse>{
     this.spinnerService.show();
-    return this.http.get(Globals.apiURL + 'course/test/test/' + testId)
+    return this.http.get(this.appConfigService.getConfig().apiURL + 'course/test/test/' + testId)
       .pipe(map((result: any) => {
           this.spinnerService.hide();
           return result;
@@ -63,9 +64,25 @@ export class TestService extends ToastrNotificationsService{
       );
   }
 
+  updateTest(formData: FormData, id : string): Observable<any>{
+    this.spinnerService.show();
+    return this.http.put(this.appConfigService.getConfig().apiURL + 'course/test/update/' + id, formData)
+      .pipe(map((result: any) => {
+          this.spinnerService.hide();
+          return true;
+        }),
+        catchError((err) => {
+          this.showError(err.error);
+          console.log(err);
+          throwError(err);
+          return of(false);
+        })
+      );
+  }
+
   deleteTest(id:string):Observable<any>{
     this.spinnerService.show();
-    return this.http.delete(Globals.apiURL + 'course/test/delete/' + id)
+    return this.http.delete(this.appConfigService.getConfig().apiURL + 'course/test/delete/' + id)
       .pipe(
         map(
           () =>{

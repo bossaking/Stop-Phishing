@@ -10,19 +10,20 @@ import {GetSingleCourseResponse} from "../models/getSingleCourseResponse";
 import {Course} from "../models/Course";
 import {SimpleCourse} from "../models/simpleCourse";
 import {UpdateCourseRequest} from "../models/updateCourseRequest";
+import {AppConfigService} from "./app-config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService extends ToastrNotificationsService{
 
-  constructor(private http: HttpClient, protected spinnerService:NgxSpinnerService) {
+  constructor(private http: HttpClient, protected spinnerService:NgxSpinnerService, private appConfigService: AppConfigService) {
     super(spinnerService);
   }
 
   getAllCourses() : Observable<GetAllCoursesResponse>{
     this.spinnerService.show();
-    return this.http.get(Globals.apiURL + 'course/courses')
+    return this.http.get(this.appConfigService.getConfig().apiURL + 'course/courses')
       .pipe(
         map(
           (result: any) =>{
@@ -39,7 +40,7 @@ export class CourseService extends ToastrNotificationsService{
 
   getCourseById(params:any):Observable<Course>{
     this.spinnerService.show();
-    return this.http.get(Globals.apiURL + 'course/' + params)
+    return this.http.get(this.appConfigService.getConfig().apiURL + 'course/' + params)
       .pipe(
         map(
           (result: any) =>{
@@ -56,7 +57,7 @@ export class CourseService extends ToastrNotificationsService{
 
   createCourse(data:SimpleCourse) : Observable<any>{
     this.spinnerService.show();
-    return this.http.post(Globals.apiURL + 'course/create', data)
+    return this.http.post(this.appConfigService.getConfig().apiURL + 'course/create', data)
       .pipe(
         map(
           () => {
@@ -74,7 +75,7 @@ export class CourseService extends ToastrNotificationsService{
 
   updateCourse(data:UpdateCourseRequest, id : string | undefined) : Observable<any>{
     this.spinnerService.show();
-    return this.http.put(Globals.apiURL + 'course/update/' + id, data)
+    return this.http.put(this.appConfigService.getConfig().apiURL + 'course/update/' + id, data)
       .pipe(
         map(
           () => {
@@ -92,7 +93,7 @@ export class CourseService extends ToastrNotificationsService{
 
   deleteCourse(id:string):Observable<any>{
     this.spinnerService.show();
-    return this.http.delete(Globals.apiURL + 'course/delete/' + id)
+    return this.http.delete(this.appConfigService.getConfig().apiURL + 'course/delete/' + id)
       .pipe(
         map(
           () =>{

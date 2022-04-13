@@ -11,19 +11,20 @@ import {Course} from "../models/Course";
 import {SimpleCourse} from "../models/simpleCourse";
 import {UpdateCourseRequest} from "../models/updateCourseRequest";
 import {LoginRequest} from "../models/LoginRequest";
+import {AppConfigService} from "./app-config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends ToastrNotificationsService{
 
-  constructor(private http: HttpClient, protected spinnerService:NgxSpinnerService) {
+  constructor(private http: HttpClient, protected spinnerService:NgxSpinnerService, private appConfigService: AppConfigService) {
     super(spinnerService);
   }
 
   logIn(data:LoginRequest) : Observable<any>{
     this.spinnerService.show();
-    return this.http.post(Globals.apiURL + 'auth/login', data)
+    return this.http.post(this.appConfigService.getConfig().apiURL + 'auth/login', data)
       .pipe(
         map(
           () => {

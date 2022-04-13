@@ -33,7 +33,7 @@
       <textarea matInput rows="5" [formControl]="badAnswerCommunicate" [readonly]="readonly"></textarea>
     </mat-form-field>
 
-    <span>Odpowiedzi ({{answers.length}})</span>
+    <span>Odpowiedzi ({{existedAnswers.length + addedAnswers.length}})</span>
     <hr>
 
     <ng-container #answersContainer></ng-container>

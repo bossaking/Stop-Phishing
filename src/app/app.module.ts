@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -37,6 +37,11 @@ import { QuestionComponent } from './question/question.component';
 import { EditTestComponent } from './edit-test/edit-test.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { EditAnswerComponent } from './edit-answer/edit-answer.component';
+import {AppConfigService} from "./services/app-config.service";
+
+export function initConfig(appConfig: AppConfigService) {
+  return () => appConfig.loadConfig();
+}
 
 @NgModule({
   declarations: [
@@ -125,7 +130,14 @@ import { EditAnswerComponent } from './edit-answer/edit-answer.component';
     MatSelectModule,
     MatSlideToggleModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initConfig,
+      deps: [AppConfigService],
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

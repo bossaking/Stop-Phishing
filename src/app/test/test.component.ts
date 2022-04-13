@@ -17,6 +17,7 @@ import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
+import {AppConfigService} from "../services/app-config.service";
 
 @Component({
   selector: 'app-test',
@@ -37,14 +38,14 @@ export class TestComponent implements OnInit {
   question : QuestionComponent | undefined;
 
   constructor(private testService: TestService, private route:ActivatedRoute, private cDRef: ChangeDetectorRef, private factory: ComponentFactoryResolver,
-              private router : Router, public authService: AuthService, public dialog: MatDialog) { }
+              private router : Router, public authService: AuthService, public dialog: MatDialog, private appConfigService: AppConfigService) { }
 
   ngOnInit(): void {
     let courseId = this.route.snapshot.paramMap.get('id');
     this.testService.getByCourseId(courseId).subscribe(result => {
       this.test = result;
       for(let question of this.test.questions){
-        question.image = Globals.apiURL + question.image;
+        question.image = this.appConfigService.getConfig().apiURL + question.image;
       }
       this.selectQuestion();
     });

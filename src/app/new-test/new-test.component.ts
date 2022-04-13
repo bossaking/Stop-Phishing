@@ -81,10 +81,10 @@ export class NewTestComponent implements OnInit {
         formData.append(`questions[${i}].badAnswerCommunicate`, question.instance.badAnswerCommunicate.value);
       } else {
         formData.append(`questions[${i}].title`, question.instance.title.value);
-        formData.append(`questions[${i}].imageNumber`, i.toString());
+        formData.append(`questions[${i}].imageName`, question.instance.image.name);
         formData.append(`questions[${i}].rightAnswerCommunicate`, question.instance.rightAnswerCommunicate.value);
         formData.append(`questions[${i}].badAnswerCommunicate`, question.instance.badAnswerCommunicate.value);
-        formData.append(`image`, question.instance.image);
+        formData.append(`images`, question.instance.image);
       }
 
 
